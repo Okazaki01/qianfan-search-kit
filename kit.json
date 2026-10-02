@@ -1,0 +1,92 @@
+{
+    "name":  "qianfan-search-kit",
+    "version":  "1.1.0",
+    "released":  "2026-10-02 15:24:23 +08:00",
+    "purpose":  "把百度千帆联网搜索接进 DeepSeek Harness：MCP 原生工具 mcp__qianfan__baidu_search + 技能脚本兜底",
+    "provides":  {
+                     "mcp_tool":  "mcp__qianfan__baidu_search",
+                     "skill":  "qianfan-search（SKILL.md + scripts/qianfan_search.py）",
+                     "entry_command":  "python \u003cskill\u003e/scripts/qianfan_search.py \"关键词\" [--top-k N] [--recency month] [--json] [--quota]"
+                 },
+    "install":  {
+                    "recommended":  "交给 AI agent：把本包给它，说「把这个 qianfan-search kit 装上，需要 Key 就问我」",
+                    "agent_manual":  "INSTALL-FOR-AGENT.md（第一步即：向用户索要 API Key）",
+                    "idempotent":  true,
+                    "manual_one_command":  "powershell -ExecutionPolicy Bypass -File .\\install.ps1 -Key \"\u003cQIANFAN_API_KEY\u003e\"",
+                    "restart_required":  "每装/卸后必须重启 DeepSeek Harness，并开新对话",
+                    "uninstall":  "powershell -ExecutionPolicy Bypass -File .\\install.ps1 -Uninstall [-RemoveSkill]"
+                },
+    "permissions":  {
+                        "contains_secrets":  false,
+                        "note":  "本包不含任何 API Key；密钥由使用者的 -Key 参数 / 环境变量 QIANFAN_API_KEY / config.json 提供。.gitignore 已排除 config.json 与 .quota.json"
+                    },
+    "quota":  {
+                  "free_tier_per_day":  100,
+                  "self_limit":  95,
+                  "counter_file":  "\u003cskill\u003e/.quota.json（脚本与 MCP 工具共用）"
+              },
+    "requirements":  {
+                         "powershell":  "5.1+（.ps1 已带 UTF-8 BOM）",
+                         "node":  "任意 Node 18+（MCP 服务用；可用 DSH 托管运行时）",
+                         "python":  "可选，仅技能脚本入口需要（纯标准库）",
+                         "network":  "需可访问 qianfan.baidubce.com"
+                     },
+    "validated":  {
+                      "live_search":  "真实调用千帆接口成功（返回摘要 + 来源 URL）",
+                      "round_trip":  "安装 → 重复安装 → 卸载 → 重装，均已实测通过",
+                      "self_test":  "install.ps1 内置自检；verify.mjs 可独立复跑",
+                      "protocol":  "用真实 @modelcontextprotocol/sdk v1.30.0 客户端跑通 initialize / tools/list / tools/call / 错误路径",
+                      "dsh_kernels":  [
+                                          "官方桌面端 0.2.0-rc.2（profiles/desktop）",
+                                          "EAC 桌面 0.1.2-alpha.1（profiles/web-desktop）"
+                                      ]
+                  },
+    "files_note":  "下面的哈希不含 kit.json 自身（自引用）",
+    "files":  [
+                  {
+                      "path":  "install.ps1",
+                      "bytes":  11694,
+                      "sha256":  "351e484881eedda557dce731e46f19c156abcf2c0f988686b551f810e07debc3"
+                  },
+                  {
+                      "path":  "INSTALL-FOR-AGENT.md",
+                      "bytes":  9603,
+                      "sha256":  "a0032b3739b0d759a54ecff3d98354aa43b32ff060bef1c3aefe4e8da808eb04"
+                  },
+                  {
+                      "path":  "verify.mjs",
+                      "bytes":  6359,
+                      "sha256":  "fcb9b8005538ba59445e5d4b9a928f53cc64e62422fd9affeaefd35973fa7a98"
+                  },
+                  {
+                      "path":  "README.md",
+                      "bytes":  5710,
+                      "sha256":  "e349eb962c2ea3c09fb5eb7def733176797dfff30e2bb660dfc2fdbd784e96bb"
+                  },
+                  {
+                      "path":  ".gitignore",
+                      "bytes":  286,
+                      "sha256":  "3d681d6ccb156480cdc8975e9f150eb53ec4ee30c929234d079b57e6e9468b0a"
+                  },
+                  {
+                      "path":  "payload/skills/qianfan-search/SKILL.md",
+                      "bytes":  4627,
+                      "sha256":  "220d12ee30c382fcc5b5f615e4768d0dabb57199c76f2c40830a9673968f5db1"
+                  },
+                  {
+                      "path":  "payload/skills/qianfan-search/config.example.json",
+                      "bytes":  206,
+                      "sha256":  "a7a87ac505a0c3b41edc357bbcdd4d8d17dc8b78092d94593345c0224bddec45"
+                  },
+                  {
+                      "path":  "payload/skills/qianfan-search/mcp/server.mjs",
+                      "bytes":  12326,
+                      "sha256":  "cd7841c76973657a24470cf74e48e1c58720c491f96ebc0df493f8f46398a90e"
+                  },
+                  {
+                      "path":  "payload/skills/qianfan-search/scripts/qianfan_search.py",
+                      "bytes":  9652,
+                      "sha256":  "9684bd90783f4f6698e495e2c640e7bede8f6456c547b639d7726e769c2db862"
+                  }
+              ]
+}

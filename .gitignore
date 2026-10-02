@@ -1,0 +1,14 @@
+# ── 绝不提交：真实密钥与本地额度计数 ──────────────────────
+config.json
+.quota.json
+**/config.json
+**/.quota.json
+
+# 安装器与应用产生的备份
+*.bak-qianfan-*
+*.lock
+
+# 系统杂物
+Thumbs.db
+desktop.ini
+.DS_Store

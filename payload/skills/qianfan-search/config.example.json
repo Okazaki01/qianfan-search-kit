@@ -1,0 +1,7 @@
+﻿{
+    "api_key":  "\u003c在这里填你的千帆 API Key，或改用环境变量 QIANFAN_API_KEY\u003e",
+    "top_k":  6,
+    "max_chars":  1200,
+    "recency":  "year",
+    "daily_limit":  95
+}
