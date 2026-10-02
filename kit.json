@@ -75,8 +75,8 @@
                   },
                   {
                       "path":  "payload/skills/qianfan-search/config.example.json",
-                      "bytes":  206,
-                      "sha256":  "a7a87ac505a0c3b41edc357bbcdd4d8d17dc8b78092d94593345c0224bddec45"
+                      "bytes":  196,
+                      "sha256":  "340a9a60db37333bc87079b8e7fa938b910a45e1b083e0600567fe740478a0ba"
                   },
                   {
                       "path":  "payload/skills/qianfan-search/mcp/server.mjs",
