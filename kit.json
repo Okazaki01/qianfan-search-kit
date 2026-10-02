@@ -87,6 +87,11 @@
                       "path":  "payload/skills/qianfan-search/scripts/qianfan_search.py",
                       "bytes":  9652,
                       "sha256":  "9684bd90783f4f6698e495e2c640e7bede8f6456c547b639d7726e769c2db862"
+                  },
+                  {
+                      "path":  ".gitattributes",
+                      "bytes":  171,
+                      "sha256":  "434cdf4ff701a745d47fa718e07bd531e0a6d6a574365568b6029cecf1510682"
                   }
               ]
 }
